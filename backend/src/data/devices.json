@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "name": "Device 1",
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "name": "Device 2",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "status": "inactive"
+  },
+  {
+    "id": 3,
+    "name": "Device 3",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "status": "active"
+  },
+  {
+    "id": 4,
+    "name": "Device 4",
+    "latitude": 34.0522,
+    "longitude": -118.2437,
+    "status": "inactive"
+  },
+  {
+    "id": 5,
+    "name": "Device 5",
+    "latitude": 55.7558,
+    "longitude": 37.6173,
+    "status": "active"
+  },
+  {
+    "id": 6,
+    "name": "Device 6",
+    "latitude": 41.9028,
+    "longitude": 12.4964,
+    "status": "inactive"
+  },
+  {
+    "id": 7,
+    "name": "Device 7",
+    "latitude": 52.52,
+    "longitude": 13.405,
+    "status": "active"
+  },
+  {
+    "id": 8,
+    "name": "Device 8",
+    "latitude": 48.1351,
+    "longitude": 11.582,
+    "status": "inactive"
+  },
+  {
+    "id": 9,
+    "name": "Device 9",
+    "latitude": 40.4168,
+    "longitude": -3.7038,
+    "status": "active"
+  },
+  {
+    "id": 10,
+    "name": "Device 10",
+    "latitude": 37.7749,
+    "longitude": -122.4194,
+    "status": "inactive"
+  },
+  {
+    "id": 11,
+    "name": "Device 11",
+    "latitude": 59.3293,
+    "longitude": 18.0686,
+    "status": "active"
+  },
+  {
+    "id": 12,
+    "name": "Device 12",
+    "latitude": 45.4642,
+    "longitude": 9.19,
+    "status": "inactive"
+  },
+  {
+    "id": 13,
+    "name": "Device 13",
+    "latitude": 33.749,
+    "longitude": -84.388,
+    "status": "active"
+  },
+  {
+    "id": 14,
+    "name": "Device 14",
+    "latitude": 29.7604,
+    "longitude": -95.3698,
+    "status": "inactive"
+  },
+  {
+    "id": 15,
+    "name": "Device 15",
+    "latitude": 38.7223,
+    "longitude": -9.1393,
+    "status": "active"
+  },
+  {
+    "id": 16,
+    "name": "Device 16",
+    "latitude": 25.7617,
+    "longitude": -80.1918,
+    "status": "inactive"
+  },
+  {
+    "id": 17,
+    "name": "Device 17",
+    "latitude": 30.0444,
+    "longitude": 31.2357,
+    "status": "active"
+  },
+  {
+    "id": 18,
+    "name": "Device 18",
+    "latitude": 36.1699,
+    "longitude": -115.1398,
+    "status": "inactive"
+  },
+  {
+    "id": 19,
+    "name": "Device 19",
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "status": "active"
+  },
+  {
+    "id": 20,
+    "name": "Device 20",
+    "latitude": 31.2304,
+    "longitude": 121.4737,
+    "status": "inactive"
+  },
+  {
+    "id": 21,
+    "name": "Device 21",
+    "latitude": 39.9042,
+    "longitude": 116.4074,
+    "status": "active"
+  },
+  {
+    "id": 22,
+    "name": "Device 22",
+    "latitude": 51.1657,
+    "longitude": 10.4515,
+    "status": "inactive"
+  },
+  {
+    "id": 23,
+    "name": "Device 23",
+    "latitude": 41.3851,
+    "longitude": 2.1734,
+    "status": "active"
+  },
+  {
+    "id": 24,
+    "name": "Device 24",
+    "latitude": 60.1699,
+    "longitude": 24.9384,
+    "status": "inactive"
+  },
+  {
+    "id": 25,
+    "name": "Device 25",
+    "latitude": 50.1109,
+    "longitude": 8.6821,
+    "status": "active"
+  },
+  {
+    "id": 26,
+    "name": "Device 26",
+    "latitude": -1.2921,
+    "longitude": 36.8219,
+    "status": "inactive"
+  },
+  {
+    "id": 27,
+    "name": "Device 27",
+    "latitude": -33.9249,
+    "longitude": 18.4241,
+    "status": "active"
+  },
+  {
+    "id": 28,
+    "name": "Device 28",
+    "latitude": 48.2082,
+    "longitude": 16.3738,
+    "status": "inactive"
+  },
+  {
+    "id": 29,
+    "name": "Device 29",
+    "latitude": 59.9139,
+    "longitude": 10.7522,
+    "status": "active"
+  },
+  {
+    "id": 30,
+    "name": "Device 30",
+    "latitude": 13.7563,
+    "longitude": 100.5018,
+    "status": "inactive"
+  },
+  {
+    "id": 31,
+    "name": "Device 31",
+    "latitude": 47.4979,
+    "longitude": 19.0402,
+    "status": "active"
+  },
+  {
+    "id": 32,
+    "name": "Device 32",
+    "latitude": 53.3498,
+    "longitude": -6.2603,
+    "status": "inactive"
+  },
+  {
+    "id": 33,
+    "name": "Device 33",
+    "latitude": 19.076,
+    "longitude": 72.8777,
+    "status": "active"
+  },
+  {
+    "id": 34,
+    "name": "Device 34",
+    "latitude": 18.5204,
+    "longitude": 73.8567,
+    "status": "inactive"
+  },
+  {
+    "id": 35,
+    "name": "Device 35",
+    "latitude": 35.6895,
+    "longitude": 139.6917,
+    "status": "active"
+  },
+  {
+    "id": 36,
+    "name": "Device 36",
+    "latitude": 51.1657,
+    "longitude": 10.4515,
+    "status": "inactive"
+  },
+  {
+    "id": 37,
+    "name": "Device 37",
+    "latitude": 48.2082,
+    "longitude": 16.3738,
+    "status": "active"
+  },
+  {
+    "id": 38,
+    "name": "Device 38",
+    "latitude": 41.8781,
+    "longitude": -87.6298,
+    "status": "inactive"
+  },
+  {
+    "id": 39,
+    "name": "Device 39",
+    "latitude": -22.9068,
+    "longitude": -43.1729,
+    "status": "active"
+  },
+  {
+    "id": 40,
+    "name": "Device 40",
+    "latitude": 37.7749,
+    "longitude": -122.4194,
+    "status": "inactive"
+  },
+  {
+    "id": 41,
+    "name": "Device 41",
+    "latitude": 40.4168,
+    "longitude": -3.7038,
+    "status": "active"
+  },
+  {
+    "id": 42,
+    "name": "Device 42",
+    "latitude": 30.2672,
+    "longitude": -97.7431,
+    "status": "inactive"
+  },
+  {
+    "id": 43,
+    "name": "Device 43",
+    "latitude": 38.7223,
+    "longitude": -9.1393,
+    "status": "active"
+  },
+  {
+    "id": 44,
+    "name": "Device 44",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "status": "inactive"
+  },
+  {
+    "id": 45,
+    "name": "Device 45",
+    "latitude": 13.7563,
+    "longitude": 100.5018,
+    "status": "active"
+  },
+  {
+    "id": 46,
+    "name": "Device 46",
+    "latitude": 19.076,
+    "longitude": 72.8777,
+    "status": "inactive"
+  },
+  {
+    "id": 47,
+    "name": "Device 47",
+    "latitude": -22.9068,
+    "longitude": -43.1729,
+    "status": "active"
+  },
+  {
+    "id": 48,
+    "name": "Device 48",
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "status": "inactive"
+  },
+  {
+    "id": 49,
+    "name": "Device 49",
+    "latitude": 59.3293,
+    "longitude": 18.0686,
+    "status": "active"
+  },
+  {
+    "id": 50,
+    "name": "Device 50",
+    "latitude": 25.7617,
+    "longitude": -80.1918,
+    "status": "inactive"
+  }
+]
