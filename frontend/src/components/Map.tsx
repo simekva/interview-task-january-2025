@@ -2,7 +2,11 @@ import React, { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-export default function Map() {
+interface MapProps {
+  devices: {name: string, status: string, location: string}[];
+}
+
+export const Map: React.FC<MapProps> = ({ devices }) => {
   const mapRef = useRef(null);
   const mapContainerRef = useRef(null);
 

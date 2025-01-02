@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
+import { Map } from "./Map";
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 interface device {
@@ -42,8 +43,15 @@ export default function DeviceList() {
   }, []);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full flex">
+      <div className="flex-1">
       <AgGridReact rowData={rowData} columnDefs={colDefs} />
+      </div>
+
+      <div className="flex-1">      
+        <Map devices={rowData} />
+      </div>
+
     </div>
   );
 }
