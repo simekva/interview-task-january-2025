@@ -6,12 +6,12 @@ const port = 3000;
 
 app.use(cors());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello from Express with TypeScript!");
-});
 
-app.get("/test", (req: Request, res: Response) => {
-  res.send([{ name: "test" }, { name: "test123" }, { name: "321" }]);
+let dataPath = require("./data/devices.json")
+
+// Serves JSON with all devices.
+app.get("/", (req: Request, res: Response) => {
+  res.json(dataPath)
 });
 
 app.listen(port, () => {
