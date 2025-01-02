@@ -16,6 +16,7 @@ interface device {
 export default function DeviceList() {
   // Row Data: The data to be displayed.
   const [rowData, setRowData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs] = useState<any[]>([{ field: "name" }, { field: "status" }, { field: "location"}]);
@@ -34,6 +35,7 @@ export default function DeviceList() {
         });
 
         setRowData(rowData); // Update rowData state after fetch
+        setLoading(false);
       } catch (e) {
         console.error("Error fetching data: ", e);
       }
@@ -41,6 +43,10 @@ export default function DeviceList() {
 
     fetchData(); // Call fetchData when component mounts
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="h-full w-full flex">

@@ -16,10 +16,14 @@ export const Map: React.FC<MapProps> = ({ devices }) => {
       container: mapContainerRef.current,
     });
 
+    devices.forEach((device) => {
+      console.log(device)
+    })
+
     return () => {
       mapRef.current.remove();
     };
-  }, []);
+  }, devices);
 
   return <div className="h-full w-full" id="map-container" ref={mapContainerRef} />;
 }
