@@ -1,36 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
-import { json } from "stream/consumers";
 ModuleRegistry.registerModules([AllCommunityModule]);
+
+interface device {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  status: string;
+}
 
 export default function DeviceList() {
   // Row Data: The data to be displayed.
-  fetchData()
-  const [rowData] = useState([
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-  ]);
+  const [rowData, setRowData] = useState<any[]>([]);
 
   // Column Definitions: Defines the columns to be displayed.
-  const [colDefs] = useState<any[]>([{ field: "make" }, { field: "model" }, { field: "price" }, { field: "electric" }]);
+  const [colDefs] = useState<any[]>([{ field: "name" }, { field: "status" }, { field: "location"}]);
+
+  // Due to data fetching being asynchronous we have to use useEffect. This ensures
+  // that the data gets fetched as the component mounts.
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get("http://localhost:3000");
+        const devices: device[] = response.data;
+
+        const rowData = devices.map((device) => {
+          const deviceLocation = "" + device.latitude + ", " + device.longitude;
+          return { name: device.name, status: device.status, location: deviceLocation };
+        });
+
+        setRowData(rowData); // Update rowData state after fetch
+      } catch (e) {
+        console.error("Error fetching data: ", e);
+      }
+    }
+
+    fetchData(); // Call fetchData when component mounts
+  }, []);
 
   return (
     <div className="h-full w-full">
       <AgGridReact rowData={rowData} columnDefs={colDefs} />
     </div>
   );
-}
-
-// Fetching every device from backend
-async function fetchData() {
-  try{
-    const response = await axios.get('http://localhost:3000')
-    console.log(response.data)
-  }
-  catch (e) {
-    console.log(e)
-  }
 }
