@@ -62,6 +62,8 @@ export default function DeviceList() {
     setSelectedDevice(selectedDevice)
   }
 
+  // Functionality for sorting, connected to the checkbox. ag-grid itself supports
+  // binary sorting, but it's locked behind a pay-wall, so i implemented it myself.
   const [showInactive, setShowInactive] = useState(true);
 
   const handleCheckboxChange = () => {
