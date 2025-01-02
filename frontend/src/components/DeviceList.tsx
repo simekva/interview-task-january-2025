@@ -32,8 +32,7 @@ export default function DeviceList() {
     { field: "location" },
   ]);
 
-  // Due to data fetching being asynchronous we have to use useEffect. This ensures
-  // that the data gets fetched before the component mounts.
+  // Fetch data before component mounts.
   useEffect(() => {
     async function fetchData() {
       try {
@@ -42,7 +41,7 @@ export default function DeviceList() {
         const devices: apiResponse[] = response.data;
 
         // Map apiResponses to objects of type Device.
-        const rowData = devices.map((device) => {
+        const rowData: device[] = devices.map((device: apiResponse) => {
           const deviceLocation = "" + device.latitude + ", " + device.longitude;
           return {
             name: device.name,
@@ -64,6 +63,7 @@ export default function DeviceList() {
   // Clicking a specific device in the list for zooming functionality.
   const [selectedDevice, setSelectedDevice] = useState<device | null>(null);
 
+  // Sets selected device to element clicked in grid. Implementation finished in map component.
   const handleRowClick = (event: any) => {
     const selectedDevice = event.data;
     setSelectedDevice(selectedDevice);
@@ -91,7 +91,7 @@ export default function DeviceList() {
   return (
     <>
       <div className="flex flex-col h-screen w-screen">
-        {/* Show Inactive text + checkbox at the top */}
+        {/* Show text + checkbox at the top */}
         <div className="text-left pl-8 pt-4 flex items-center">
           <p>Show inactive: </p>
           <input
@@ -103,7 +103,7 @@ export default function DeviceList() {
         </div>
 
         <div className="flex flex-1">
-          {/* Left side: Ag Grid */}
+          {/* Left side:  Grid */}
           <div className="flex-1 p-4">
             <AgGridReact
               rowData={filteredRowData}

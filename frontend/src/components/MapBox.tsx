@@ -16,7 +16,7 @@ export const MapBox: React.FC<MapBoxProps> = ({
   const mapRef = useRef(null);
   const mapContainerRef = useRef(null);
 
-  // Keep track of markers with device for easy removal.
+  // Keep track of markers with corresponding device for easy removal.
   const markersRef = useRef<Map<string, Marker>>(new Map());
 
   // Map init.
@@ -33,8 +33,9 @@ export const MapBox: React.FC<MapBoxProps> = ({
     };
   }, []);
 
+  // Marker drawing.
   useEffect(() => {
-    // Remove all inactive markers if checkbox unchecked.
+    // Remove all inactive markers if showInactive is unchecked.
     if (!showInactive) {
       devices
         .filter((device) => device.status === "inactive")
@@ -46,8 +47,7 @@ export const MapBox: React.FC<MapBoxProps> = ({
           }
         });
     }
-
-    // Draw all active markers, or all markers if showInactive is true.
+    // Draw only active markers, unless showInactive is true.
     devices.forEach((device) => {
       const latitude = device.location.split(",")[0];
       const longitude = device.location.split(",")[1];
@@ -60,7 +60,7 @@ export const MapBox: React.FC<MapBoxProps> = ({
         markersRef.current.set(device.name, marker);
       }
     });
-  }, [showInactive]);
+  }, [showInactive]); // Called whenever showInactive (checkbox) changes
 
   // Functionality for flying to a clicked device.
   useEffect(() => {
