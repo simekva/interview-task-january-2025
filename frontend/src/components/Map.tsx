@@ -17,7 +17,10 @@ export const Map: React.FC<MapProps> = ({ devices }) => {
     });
 
     devices.forEach((device) => {
-      console.log(device)
+      const longitude = device.location.split(",")[1]
+      const latitude = device.location.split(",")[0]
+      
+      const marker = new mapboxgl.Marker().setLngLat([parseFloat(longitude), parseFloat(latitude)]).addTo(mapRef.current)
     })
 
     return () => {
