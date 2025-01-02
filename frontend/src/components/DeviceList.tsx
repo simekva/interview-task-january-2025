@@ -8,40 +8,43 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 export interface device {
   id: number;
   name: string;
-  location: string
+  location: string;
   status: string;
 }
 
-interface response {
+interface apiResponse {
   id: number;
   name: string;
   latitude: number;
-  longitude: number
-  status: string
+  longitude: number;
+  status: string;
 }
 
 export default function DeviceList() {
+
   // Row Data: The data to be displayed.
   const [rowData, setRowData] = useState<any[]>([]);
+  // Loading state to ensure asynchronosity.
   const [loading, setLoading] = useState(true);
 
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs] = useState<any[]>([{ field: "name" }, { field: "status" }, { field: "location"}]);
 
   // Due to data fetching being asynchronous we have to use useEffect. This ensures
-  // that the data gets fetched as the component mounts.
+  // that the data gets fetched before the component mounts.
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get("http://localhost:3000");
-        const devices: response[] = response.data;
+        const devices: apiResponse[] = response.data;
 
+        // Map apiResponses to objects of type Device.
         const rowData = devices.map((device) => {
           const deviceLocation = "" + device.latitude + ", " + device.longitude;
           return { name: device.name, status: device.status, location: deviceLocation };
         });
 
-        setRowData(rowData); // Update rowData state after fetch
+        setRowData(rowData);
         setLoading(false);
       } catch (e) {
         console.error("Error fetching data: ", e);
@@ -51,6 +54,7 @@ export default function DeviceList() {
     fetchData(); // Call fetchData when component mounts
   }, []);
 
+  // Clicking a specific device in the list for zooming functionality.
   const [selectedDevice, setSelectedDevice] = useState<device | null>(null);
 
   const handleRowClick = (event: any) => {

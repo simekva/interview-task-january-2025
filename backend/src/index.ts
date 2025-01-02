@@ -16,7 +16,8 @@ try {
 }
 
 
-// Serves JSON with all devices.
+// Serves JSON with all devices. For this task this is the only
+// necessary end-point.
 app.get("/", (req: Request, res: Response) => {
   try {
     res.json(data)

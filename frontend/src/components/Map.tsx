@@ -12,17 +12,16 @@ export const Map: React.FC<MapProps> = ({ devices, selectedDevice }) => {
   const mapRef = useRef(null);
   const mapContainerRef = useRef(null);
 
-
   useEffect(() => {
     mapboxgl.accessToken = "pk.eyJ1IjoiaHNqb2hhbnNlbiIsImEiOiJjbTVlOWQ1cDAyNnR4MmxyNzJtZmhvMmVmIn0.aRUwNHNNmYO7e0TrCs7Ksg";
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
     });
 
+    // Create markers for each listed location.
     devices.forEach((device) => {
       const latitude = device.location.split(",")[0]
       const longitude = device.location.split(",")[1]
-
 
       const marker = new mapboxgl.Marker().setLngLat([parseFloat(longitude), parseFloat(latitude)]).addTo(mapRef.current)
     })
@@ -32,6 +31,7 @@ export const Map: React.FC<MapProps> = ({ devices, selectedDevice }) => {
     };
   }, devices);
 
+  // Functionality for flying to a clicked device.
   useEffect(() => {
     if (selectedDevice) {
       console.log("Clicked: ", selectedDevice)
@@ -41,10 +41,12 @@ export const Map: React.FC<MapProps> = ({ devices, selectedDevice }) => {
       console.log("Flying to: ", longitude, latitude)
       mapRef.current.flyTo({
         center: [longitude, latitude],
-        essential: true
+        essential: true,
+        speed: 1,
+        zoom: 12
       })
     }
-  },  [selectedDevice])
+  },  [selectedDevice]) // Called whenever selectedDevice changes, aka when the user clicks an entry in the list.
 
   return <div className="h-full w-full" id="map-container" ref={mapContainerRef} />;
 }
