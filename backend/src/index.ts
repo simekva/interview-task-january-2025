@@ -6,12 +6,24 @@ const port = 3000;
 
 app.use(cors());
 
+var data = ""
 
-let dataPath = require("./data/devices.json")
+// Error handling for fetching of data.
+try {
+  data = require("./data/devices.json")
+} catch (e) {
+  console.log(e)
+}
+
 
 // Serves JSON with all devices.
 app.get("/", (req: Request, res: Response) => {
-  res.json(dataPath)
+  try {
+    res.json(data)
+  }
+  catch (e) {
+    console.log(e)
+  }
 });
 
 app.listen(port, () => {
