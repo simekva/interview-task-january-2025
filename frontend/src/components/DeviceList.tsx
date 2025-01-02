@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
@@ -40,8 +40,8 @@ export default function DeviceList() {
 
         // Map apiResponses to objects of type Device.
         const rowData = devices.map((device) => {
-          const deviceLocation = "" + device.latitude + ", " + device.longitude;
-          return { name: device.name, status: device.status, location: deviceLocation };
+            const deviceLocation = "" + device.latitude + ", " + device.longitude;
+            return { name: device.name, status: device.status, location: deviceLocation };
         });
 
         setRowData(rowData);
@@ -62,19 +62,49 @@ export default function DeviceList() {
     setSelectedDevice(selectedDevice)
   }
 
+  const [showInactive, setShowInactive] = useState(true);
+
+  const handleCheckboxChange = () => {
+    console.log("Set show inactive to: ", !showInactive)
+    setShowInactive(!showInactive);
+  }
+
+  const filteredRowData = useMemo(() => {
+    if (showInactive) {
+      return rowData;
+    }
+    return rowData.filter((device) => device.status === "active")
+  }, [showInactive, rowData]);
+
   if (loading) {
     return <div>Loading...</div>
   }
 
   return (
-    <div className="h-full w-full flex">
-      <div className="flex-1">
-      <AgGridReact rowData={rowData} columnDefs={colDefs} onRowClicked={handleRowClick} />
+    <>
+      <div className="flex flex-col h-screen w-screen">
+        {/* Show Inactive text at the top */}
+        <div className="text-left pl-8 pt-4 flex items-center">
+          <p>Show inactive: </p>
+          <input defaultChecked={showInactive} onChange={handleCheckboxChange} className="ml-4" type="checkbox"/>
+        </div>
+  
+        <div className="flex flex-1">
+          {/* Left side: Ag Grid */}
+          <div className="flex-1 p-4">
+            <AgGridReact
+              rowData={filteredRowData}
+              columnDefs={colDefs}
+              onRowClicked={handleRowClick}
+            />
+          </div>
+  
+          {/* Right side: Map */}
+          <div className="flex-1 p-4">
+            <Map devices={filteredRowData} selectedDevice={selectedDevice} />
+          </div>
+        </div>
       </div>
-
-      <div className="flex-1">      
-        <Map devices={rowData} selectedDevice={selectedDevice}/>
-      </div>
-    </div>
+    </>
   );
 }
