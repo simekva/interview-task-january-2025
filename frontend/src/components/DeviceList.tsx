@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
-import { Map } from "./Map";
+import {Map } from "./Map";
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-interface device {
+export interface device {
+  id: number;
+  name: string;
+  location: string
+  status: string;
+}
+
+interface response {
   id: number;
   name: string;
   latitude: number;
-  longitude: number;
-  status: string;
+  longitude: number
+  status: string
 }
 
 export default function DeviceList() {
@@ -27,7 +34,7 @@ export default function DeviceList() {
     async function fetchData() {
       try {
         const response = await axios.get("http://localhost:3000");
-        const devices: device[] = response.data;
+        const devices: response[] = response.data;
 
         const rowData = devices.map((device) => {
           const deviceLocation = "" + device.latitude + ", " + device.longitude;
@@ -44,6 +51,13 @@ export default function DeviceList() {
     fetchData(); // Call fetchData when component mounts
   }, []);
 
+  const [selectedDevice, setSelectedDevice] = useState<device | null>(null);
+
+  const handleRowClick = (event: any) => {
+    const selectedDevice = event.data;
+    setSelectedDevice(selectedDevice)
+  }
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -51,13 +65,12 @@ export default function DeviceList() {
   return (
     <div className="h-full w-full flex">
       <div className="flex-1">
-      <AgGridReact rowData={rowData} columnDefs={colDefs} />
+      <AgGridReact rowData={rowData} columnDefs={colDefs} onRowClicked={handleRowClick} />
       </div>
 
       <div className="flex-1">      
-        <Map devices={rowData} />
+        <Map devices={rowData} selectedDevice={selectedDevice}/>
       </div>
-
     </div>
   );
 }
