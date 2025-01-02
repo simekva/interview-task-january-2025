@@ -67,7 +67,6 @@ export default function DeviceList() {
   const [showInactive, setShowInactive] = useState(true);
 
   const handleCheckboxChange = () => {
-    console.log("Set show inactive to: ", !showInactive)
     setShowInactive(!showInactive);
   }
 
@@ -103,7 +102,7 @@ export default function DeviceList() {
   
           {/* Right side: Map */}
           <div className="flex-1 p-4">
-            <Map devices={filteredRowData} selectedDevice={selectedDevice} />
+            <Map devices={rowData} selectedDevice={selectedDevice} showInactive={showInactive} />
           </div>
         </div>
       </div>

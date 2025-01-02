@@ -1,16 +1,21 @@
-import React, { useRef, useEffect } from "react";
-import mapboxgl from "mapbox-gl";
+import React, { useRef, useEffect, useMemo } from "react";
+import mapboxgl, { Marker } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 interface MapProps {
   devices: {name: string, status: string, location: string}[];
   selectedDevice: { name: string; status: string; location: string } | null;
+  showInactive: boolean;
 }
 
-export const Map: React.FC<MapProps> = ({ devices, selectedDevice }) => {
+const markers: Marker[] = [] 
+
+export const Map: React.FC<MapProps> = ({ devices, selectedDevice, showInactive }) => {
 
   const mapRef = useRef(null);
   const mapContainerRef = useRef(null);
+
+  const markersRef = useRef<Marker[]>([]);
 
   useEffect(() => {
     mapboxgl.accessToken = "pk.eyJ1IjoiaHNqb2hhbnNlbiIsImEiOiJjbTVlOWQ1cDAyNnR4MmxyNzJtZmhvMmVmIn0.aRUwNHNNmYO7e0TrCs7Ksg";
@@ -18,18 +23,29 @@ export const Map: React.FC<MapProps> = ({ devices, selectedDevice }) => {
       container: mapContainerRef.current,
     });
 
-    // Create markers for each listed location.
-    devices.forEach((device) => {
-      const latitude = device.location.split(",")[0]
-      const longitude = device.location.split(",")[1]
-
-      const marker = new mapboxgl.Marker().setLngLat([parseFloat(longitude), parseFloat(latitude)]).addTo(mapRef.current)
-    })
-
     return () => {
       mapRef.current.remove();
     };
-  }, devices);
+  }, []);
+
+  useEffect(() => {
+    markersRef.current.forEach((marker) => {
+      marker.remove();
+    })
+
+    markersRef.current = []
+
+    const filteredDevices = showInactive ? devices : devices.filter((device) => device.status === "active")
+
+    filteredDevices.forEach((device) => {
+      const latitude = device.location.split(",")[0];
+      const longitude = device.location.split(",")[1];
+
+      const marker = new mapboxgl.Marker().setLngLat([parseFloat(longitude), parseFloat(latitude)]).addTo(mapRef.current);
+      markersRef.current.push(marker);
+    });
+    console.log(markersRef.current.length)
+  }, [showInactive])
 
   // Functionality for flying to a clicked device.
   useEffect(() => {
