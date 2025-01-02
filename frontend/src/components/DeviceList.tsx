@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
-import { MapBox } from "./Map";
+import { MapBox } from "./MapBox";
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export interface device {
